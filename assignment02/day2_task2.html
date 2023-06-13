@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dojo課題</title>
+<style>
+html, body {
+  height: 100%;
+  margin: 0;
+}
+header {
+  background-color: #1aaedb;
+  border-bottom: #ead963 6px solid;
+}
+.container {
+  padding: 16px;
+  padding-left: 120px;
+}
+header h1,
+header h2 {
+  margin: 0;
+  color: #fff;
+  line-height: 1;
+}
+header h1 {
+  padding: 30px 0 5px 0;
+  font-size: 24px;
+  border-bottom: 1px dotted #fff;
+  font-weight: 500;
+}
+header h2 {
+  padding: 6px 0 0 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>dojo day2</h1>
+    <h2>JavaScript講義</h2>
+  </div>
+</header>
+<main class="container">
+</main>
+<script>
+  // ここに処理を追記
+  "use strict";
+  let price;
+  const product = prompt("何をお求めですか？");
+
+  if(product === "りんご") price = 150
+  else if(product == "ばなな") price = 100
+  else price = undefined
+
+  console.log(price === undefined ? 
+    "品切れです" : `1つ${price}円です`);
+</script>
+</body>
+</html>
