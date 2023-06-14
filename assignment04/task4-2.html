@@ -67,23 +67,38 @@ header h2 {
   <button id="btn">計算</button>
 </main>
 <script>
-  // 質問：セキュアオプションでユーザ数を指定するがベース料金は1名分で良いのか
-
   // ここに処理を記載する
+  'use strict'
+
   const BASE_PRICE = 3900;
-  const [secureOptionElement, diskOptionElement] = document.getElementsByClassName('chk');
-  const [numPeopleElement, numDiskElement] = document.getElementsByClassName('slct');
+  const LOWEST_NUM = 1;
+  const HIGHEST_NUM = 5;
+  const [secureOptionElement, storageOptionElement] = document.getElementsByClassName('chk');
+  const [numUserElement, numStorageElement] = document.getElementsByClassName('slct');
   const priceElement = document.getElementById('price');
   const buttonElement = document.getElementById('btn');
   
+  // 不適切な入力検出処理
+  const isValidInput = (numsArray = [1, 1]) => {
+    const max = Math.max(numsArray[0], numsArray[1]);
+    const min = Math.min(numsArray[0], numsArray[1]);
+    if (max <= 5 && min >= 1) return false;
+  };
+
+  // 各オプションの総額合算処理
   const calcPrice = (num, price) => {
     return parseInt(num, 10) * parseInt(price, 10);
   };
 
+  // ボタンクリック時の処理
   const buttonClick = () => {
     let totalPrice = BASE_PRICE;
-    if (secureOptionElement.checked) totalPrice += calcPrice(numPeopleElement.value, secureOptionElement.value);
-    if (diskOptionElement.checked) totalPrice += calcPrice(numDiskElement.value, diskOptionElement.value);
+    const numUser = numUserElement.value;
+    const numStorage = numStorageElement.value;
+    
+    if (!isValidInput([numUser, numStorage])) throw new Error("Enter valid input");
+    if (secureOptionElement.checked) totalPrice += calcPrice(numUser, secureOptionElement.value);
+    if (storageOptionElement.checked) totalPrice += calcPrice(numStorage, storageOptionElement.value);
     priceElement.textContent = totalPrice;
   };
 
