@@ -46,14 +46,13 @@ header h2 {
 <main class="container">
   <h1>kintone のライセンス料</h1>
   <div class="user">最低ユーザー数(ライトコース)での利用料金</div><br/>
-  <input id="secure-option" type="checkbox" class="chk" value="250"/>セキュアオプション（1ユーザー あたり 250円）<br/>
-  <input id="disk-option" type="checkbox" class="chk" value="1000"/>ディスク増設（10GB あたり 1000円）<br/>
+  <input type="checkbox" class="chk" value="250"/>セキュアオプション（1ユーザー あたり 250円）<br/>
+  <input type="checkbox" class="chk" value="1000"/>ディスク増設（10GB あたり 1000円）<br/>
   <h3>月額金額：<span id="price">3900</span>円</h3>
 </main>
 <script>
   // ここに処理を記載する
-  const secureOptionElement = document.getElementById('secure-option');
-  const diskOptionElement = document.getElementById('disk-option');
+  const [diskOptionElement, secureOptionElement] = document.getElementsByClassName('chk');
   const priceElement = document.getElementById('price');
   let totalPrice = parseInt(priceElement.textContent, 10);
 
