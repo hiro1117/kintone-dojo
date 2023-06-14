@@ -67,8 +67,27 @@ header h2 {
   <button id="btn">計算</button>
 </main>
 <script>
-  // ここに処理を記載する
+  // 質問：セキュアオプションでユーザ数を指定するがベース料金は1名分で良いのか
 
+  // ここに処理を記載する
+  const BASE_PRICE = 3900;
+  const [secureOptionElement, diskOptionElement] = document.getElementsByClassName('chk');
+  const [numPeopleElement, numDiskElement] = document.getElementsByClassName('slct');
+  const priceElement = document.getElementById('price');
+  const buttonElement = document.getElementById('btn');
+  
+  const calcPrice = (num, price) => {
+    return parseInt(num, 10) * parseInt(price, 10);
+  };
+
+  const buttonClick = () => {
+    let totalPrice = BASE_PRICE;
+    if (secureOptionElement.checked) totalPrice += calcPrice(numPeopleElement.value, secureOptionElement.value);
+    if (diskOptionElement.checked) totalPrice += calcPrice(numDiskElement.value, diskOptionElement.value);
+    priceElement.textContent = totalPrice;
+  };
+
+  buttonElement.onclick = buttonClick;
 </script>
 </body>
 </html>
