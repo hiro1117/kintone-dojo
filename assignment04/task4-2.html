@@ -70,18 +70,22 @@ header h2 {
   // ここに処理を記載する
   'use strict'
 
-  const BASE_PRICE = 3900;
-  const LOWEST_NUM = 1;
-  const HIGHEST_NUM = 5;
-  const [secureOptionElement, storageOptionElement] = document.getElementsByClassName('chk');
-  const [numUserElement, numStorageElement] = document.getElementsByClassName('slct');
+  // Elementの取得
   const priceElement = document.getElementById('price');
   const buttonElement = document.getElementById('btn');
+  const [secureOptionElement, storageOptionElement] = document.getElementsByClassName('chk');
+  const [numUserElement, numStorageElement] = document.getElementsByClassName('slct');
   
+  // ライセンス・オプション価格
+  const BASE_PRICE = 3900;
+  const secureOptionPrice = Number(secureOptionElement.value);
+  const storageOptionPrice = Number(storageOptionElement.value);
+  
+
   // 不適切な入力検出処理
-  const isValidInput = (numsArray = [1, 1]) => {
-    const max = Math.max(numsArray[0], numsArray[1]);
-    const min = Math.min(numsArray[0], numsArray[1]);
+  const isValidInput = (inputs) => {
+    const max = Math.max(inputs[0], inputs[1]);
+    const min = Math.min(inputs[0], inputs[1]);
     if (max <= 5 && min >= 1) return false;
   };
 
@@ -95,10 +99,10 @@ header h2 {
     let totalPrice = BASE_PRICE;
     const numUser = numUserElement.value;
     const numStorage = numStorageElement.value;
-    
+
     if (!isValidInput([numUser, numStorage])) throw new Error("Enter valid input");
-    if (secureOptionElement.checked) totalPrice += calcPrice(numUser, secureOptionElement.value);
-    if (storageOptionElement.checked) totalPrice += calcPrice(numStorage, storageOptionElement.value);
+    if (secureOptionElement.checked) totalPrice += calcPrice(numUser, secureOptionPrive);
+    if (storageOptionElement.checked) totalPrice += calcPrice(numStorage, storageOptionPrice);
     priceElement.textContent = totalPrice;
   };
 
