@@ -54,8 +54,9 @@ header h2 {
   if(product === "りんご") price = 150
   else if(product == "ばなな") price = 100
 
-  console.log(price === undefined ? 
-    "品切れです" : `1つ${price}円です`);
+  if (price === undefined) alert("品切れです");
+  else console.log(`1つ${price}円です`);
+  
 </script>
 </body>
 </html>
