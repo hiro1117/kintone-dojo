@@ -44,9 +44,20 @@ header h2 {
   </div>
 </header>
 <main class="container">
-  <table>
-    <tr>
+  <h1>News</h1>
+
+  <table id="dataTable">
+    <tr id="tableHeader">
+      <th>Date</th>
+      <th>Category</th>
+      <th>Title</th>
     </tr>
+    <tr id="graph-ca">
+      <td>Date</td>
+      <td>Category</td>
+      <td>Title</td>
+    </tr>
+
   </table>
 </main>
 <script>
@@ -56,22 +67,28 @@ header h2 {
   const BASE_URL = "https://54o76ppvn8.execute-api.ap-northeast-1.amazonaws.com/prod/bb-dojo";
   const ID = "dojo";
 
+  // Elementの取得
+  const table = document.getElementById('dataTable');
+  console.log(table.rows.length);
+
+
   // API呼び出し
   const getApiData = async() => {
     const response = await fetch(`${BASE_URL}?id=${ID}`);
     return response.json();
   };
 
-
-  const createNewRowElements = () => {
+  const addRow = () => {
+    const rowCount = table.rows.length;
+    const row = table.insertRow(rowCount);
     let newRow = document.createElement("tr");
-    O
-  }
+    
+  };
 
 
 
   getApiData().then((data) => {
-    console.log(data)　　
+    console.log(data)
   });
   
 </script>
