@@ -35,12 +35,15 @@ const addRow = (rowData) => {
   const contentCell = row.insertCell(2);
 
   // contentCellに<a> hrefを追加
-  const urlElement = document.createElement('a');
+  const linkElement = document.createElement('a');
+  linkElement.href = rowData.url.value
+  linkElement.setAttribute()
+  contentCell.appendChild(linkElement);
 
   // 各<td>要素にテキストコンテンツを追加
   dateCell.textContent = rowData.day.value;
   categoryCell.textContent = rowData.category.value;
-  contentCell.textContent = rowData.content.value;
+  linkElement.textContent = rowData.content.value;
 };
 
 //
@@ -58,4 +61,6 @@ const sortContents = () => {
 getAPIData().then((data) => {
   console.log(data)
   buildTable(data);
+}).catch(err => {
+  throw new Error(err);
 });
