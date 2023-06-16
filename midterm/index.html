@@ -3,38 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
 <title>dojo課題</title>
-<style>
-html, body {
-  height: 100%;
-  margin: 0;
-}
-header {
-  background-color: #1aaedb;
-  border-bottom: #ead963 6px solid;
-}
-.container {
-  padding: 16px;
-  padding-left: 120px;
-}
-header h1,
-header h2 {
-  margin: 0;
-  color: #fff;
-  line-height: 1;
-}
-header h1 {
-  padding: 30px 0 5px 0;
-  font-size: 24px;
-  border-bottom: 1px dotted #fff;
-  font-weight: 500;
-}
-header h2 {
-  padding: 6px 0 0 0;
-  font-size: 14px;
-  font-weight: 400;
-}
-</style>
 </head>
 <body>
 <header>
@@ -45,52 +15,21 @@ header h2 {
 </header>
 <main class="container">
   <h1>News</h1>
-
+  <section class="section-input-options">
+    <select id="sort-option">
+      <option value="">-- Select sort option --</option>
+      <option value="latest">Newest order</option>
+      <option value="oldest">Oldest order</option>
+    </select>
+  </section> 
   <table id="dataTable">
     <tr id="tableHeader">
       <th>Date</th>
       <th>Category</th>
       <th>Title</th>
     </tr>
-    <tr id="graph-ca">
-      <td>Date</td>
-      <td>Category</td>
-      <td>Title</td>
-    </tr>
-
   </table>
 </main>
-<script>
-  // ここに処理を記載する
-  'use strict'
-  // API variables
-  const BASE_URL = "https://54o76ppvn8.execute-api.ap-northeast-1.amazonaws.com/prod/bb-dojo";
-  const ID = "dojo";
-
-  // Elementの取得
-  const table = document.getElementById('dataTable');
-  console.log(table.rows.length);
-
-
-  // API呼び出し
-  const getApiData = async() => {
-    const response = await fetch(`${BASE_URL}?id=${ID}`);
-    return response.json();
-  };
-
-  const addRow = () => {
-    const rowCount = table.rows.length;
-    const row = table.insertRow(rowCount);
-    let newRow = document.createElement("tr");
-    
-  };
-
-
-
-  getApiData().then((data) => {
-    console.log(data)
-  });
-  
-</script>
+<script src="script.js"></script>
 </body>
 </html>
