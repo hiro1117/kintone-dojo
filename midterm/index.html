@@ -16,18 +16,29 @@
 <main class="container">
   <h1>News</h1>
   <section class="section-input-options">
+    <label>Sorted by:</label>
     <select id="sort-option">
-      <option value="">-- Select sort option --</option>
-      <option value="latest">Newest order</option>
-      <option value="oldest">Oldest order</option>
+      <option value="latest">Newest first</option>
+      <option value="oldest">Oldest first</option>
+    </select>
+    <label>Limited contents by:</label>
+    <select id="contents-limit-option">
+      <option selected disabled>-</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="">All</option>
     </select>
   </section> 
-  <table id="dataTable">
-    <tr id="tableHeader">
+  <table id="data-table">
+    <tr id="table-header">
       <th>Date</th>
       <th>Category</th>
       <th>Title</th>
     </tr>
+    <tbody id="table-body"></tbody>
   </table>
 </main>
 <script src="script.js"></script>
