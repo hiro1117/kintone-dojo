@@ -36,7 +36,7 @@ const removeAllChildElems = (parent) => {
   while(parent.lastChild){
     parent.removeChild(parent.lastChild);
   }
-}
+};
 
 // 表にrowを追加する関数
 const addRow = (rowData) => {
@@ -94,7 +94,7 @@ limitOptionElement.addEventListener("change", async() => {
   const newsArray = await getAPIData(limitOptionValue);
   sortContents(newsArray);
   buildTable(newsArray);
-})
+});
 // sortOptionElement.addEventListener("change", () => {
 //   getAPIData().then((newsArray) => {
 //     const sortPref = sortOptionElement.value;
@@ -110,6 +110,8 @@ limitOptionElement.addEventListener("change", async() => {
 // Webサイト読み込み時のapi取得＆コンテンツ表示の処理
 //
 getAPIData().then((newsArray) => {
+  // const clonedArray = [...newsArray];
+  // const duplicatedArray = [...newsArray, ...clonedArray];
   sortContents(newsArray);
   buildTable(newsArray);
 })
