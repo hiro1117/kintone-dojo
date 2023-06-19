@@ -103,8 +103,6 @@ limitOptionElement.addEventListener("change", async() => {
 // Webサイト読み込み時のapi取得＆コンテンツ表示の処理
 //
 getAPIData().then((newsArray) => {
-  // const clonedArray = [...newsArray];
-  // const duplicatedArray = [...newsArray, ...clonedArray];
   sortContents(newsArray);
   buildTable(newsArray);
 })
