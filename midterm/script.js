@@ -52,9 +52,12 @@ const addRow = (rowData) => {
   const linkElement = document.createElement('a');
   const targetValue = rowData['target'].value;
   linkElement.href = rowData.url.value
-  linkElement.setAttribute('target', targetValue);
   contentCell.appendChild(linkElement);
-
+  
+  // 各要素に属性を追加
+  linkElement.setAttribute('target', targetValue);
+  categoryCell.setAttribute('id', rowData.label.value)
+  
   // 各<td>要素にテキストコンテンツを追加
   dateCell.textContent = rowData.day.value;
   categoryCell.textContent = rowData.category.value;
@@ -63,7 +66,6 @@ const addRow = (rowData) => {
 
 // 表のコンテンツ文字数を制限する関数
 const truncateTitle = (text) => {
-  console.log(text.length)
   return text.length > MAX_LENGTH ? `${text.slice(0, MAX_LENGTH)}...` : text; 
 };
 
@@ -95,15 +97,6 @@ limitOptionElement.addEventListener("change", async() => {
   sortContents(newsArray);
   buildTable(newsArray);
 });
-// sortOptionElement.addEventListener("change", () => {
-//   getAPIData().then((newsArray) => {
-//     const sortPref = sortOptionElement.value;
-//     const sortedNews = sortContents(newsArray, sortPref);
-//     return sortedNews
-//   }).then((sortedNews) => {
-//     buildTable(sortedNews);    
-//   })
-// });
 
 
 //

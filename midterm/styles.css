@@ -27,3 +27,23 @@ header h2 {
   font-size: 14px;
   font-weight: 400;
 }
+
+#data-table {
+  border-collapse: collapse;
+}
+
+#data-table tr, th, td {
+  padding: 1rem;
+  border: solid 1px;
+  text-align: center;
+}
+
+#ir {
+  background-color: #e4c1f9;
+}
+#company {
+  background-color: #a9def9;
+}
+#product {
+  background-color: #d0f4de;
+}
