@@ -1,0 +1,7 @@
+{
+  "liveServer.settings.https": {
+    "enable": true,
+    "cert": "/Users/hiro1117/Documents/import document/localhost+2.pem",
+    "key": "/Users/hiro1117/Documents/import document/localhost+2-key.pem"
+  }
+}
