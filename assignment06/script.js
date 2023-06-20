@@ -1,18 +1,15 @@
 (() => {
   'use strict';
-  // Change the expected order date
-  // when "proposing place" field value changes at record add screen.
-  //Plan A -> 1 week later, Plan B -> 1 month later
-  kintone.events.on('app.record.create.change.proposingPlan', (event) => {
-    console.log(event);
-    const plan = event.record.proposingPlan.value;
-    const today = dayjs();
-    let addedDate = '';
+  const action5Array = ['あくなき探求', '不屈の心体', '理想への共感', '心を動かす', '知識を増やす', '公明正大']; 
 
-    if (plan === 'Aプラン') addedDate = today.add(1, 'week').format('YYYY-MM-DD')
-    else if (plan === 'Bプラン') addedDate = today.add(1, 'month').format('YYYY-MM-DD')
-    else if (plan === 'Cプラン') addedDate = today.add(1, 'year').format('YYYY-MM-DD')
-    event.record.orderDate.value = addedDate;
+  kintone.events.on('app.record.create.show', (event) => {
+    const tableArray = event.record.Table.value;
+    action5Array.forEach((elem) => {
+      let clonedTableArrayElem = structuredClone(tableArray[0]);
+      clonedTableArrayElem.value.Action5.value = elem;
+      tableArray.push(clonedTableArrayElem);
+    });
+    tableArray.shift();
     return event;
   }); 
 
