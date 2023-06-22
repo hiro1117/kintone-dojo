@@ -17,7 +17,7 @@
     return orderedOptionLabel;
   };
 
-  const insertTable = async (event, action5Array) => {
+  const insertTable = (event, action5Array) => {
     const tableArray = event.record.Table.value;
     action5Array.forEach((elem) => {
       const clonedTableArrayElem = structuredClone(tableArray[0]);
