@@ -14,7 +14,6 @@
       const index = options[element].index;
       orderedOptionLabel[index] = element;
     }
-
     return orderedOptionLabel;
   };
 
