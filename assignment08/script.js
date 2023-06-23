@@ -2,7 +2,7 @@
   'use strict';
 
   const params = {
-    app: 25,
+    app: kintone.app.getId(),
   };
 
   const getAction5Label = async () => {
