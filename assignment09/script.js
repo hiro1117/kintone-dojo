@@ -1,39 +1,33 @@
 (() => {
   'use strict';
 
+  const submitEvents = [
+    'app.record.create.submit', 
+    'app.record.edit.submit',
+  ];
   
-
-  // REST APIでレコードの重複禁止項目を配列で取得
-  const getRestrictedStrs = async () => {
-    const recordsArray = resp.records;
-    const recordValuesArray = [];
+  
+  kintone.events.on(submitEvents, async (event) => {
+    // JS APIで重複禁止項目の値を取得
+    const recordValue = event.record.重複禁止項目.value;
     
-    recordsArray.forEach(element => {
-      const recordValue = element['重複禁止項目'].value;
-      recordValuesArray.push(recordValue);
-    });
-    return recordValuesArray;
-  };
-  
-  
-  // 指定したイベントによって、重複禁止処理を実行
-  kintone.events.on(['app.record.create.submit', 'app.record.edit.submit'], async (event) => {
-    const fieldsRestrictedId =  event.record.重複禁止項目.value;
-    console.log('query');
     
+    // 重複禁止項目の値を含めたparamを用意
     const params = {
-      app: kintone.api.getId(),
-      fields: '重複禁止項目',
-      query: `重複禁止項目 = ${fieldsRestrictedId}`
+      "app": kintone.app.getId(),
+      "query": `重複禁止項目 = "${recordValue}"`,
+      "totalCount": true
     };
 
-    console.log(params.query);
-    const resp = await kintone.api(kintone.api.url(`/k/v1/records.json`, true), 'GET', params);
+  // REST APIをparamを使って叩く（param = '重複項目 = "20230612-KN-1" ）
+    const resp = await kintone.api(kintone.api.url('/k/v1/records.json', true), 'GET', params);
+    console.log(resp);
 
-    console.log(fieldsRestrictedId);
-    const restrictedValuesArray = await getRestrictedStrs();
+  // if 返ってくるRecord.lengthが０、return event 
+  // else window.confirm("dddddd");
+    if (Number(resp.totalCount) === 0) return event;
+    else return window.confirm('レコードが重複しています。このまま保存しますか？') ? event : false;
 
-    return event;
   })
 
 
