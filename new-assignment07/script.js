@@ -28,12 +28,9 @@
   };
 
   const createUniqueId = (event) => {
-    const date = event.record.日付.value;
-    const product = event.record.サイボウズ製品.value;
-    const uniqueNum = event.record.管理番号.value;
-    const formatedDate = convertDate(date);
-    const productID = convertProductID(product);
-    const uniqueString = formatText(formatedDate, productID, uniqueNum);
+    const date = convertDate(event.record.日付.value);
+    const productID = convertProductID(event.record.サイボウズ製品.value);
+    const uniqueString = formatText(date, productID, event.record.管理番号.value);
     return uniqueString;
   };
 
