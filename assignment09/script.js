@@ -22,5 +22,5 @@
     
     if (Number(resp.totalCount) === 0) return event;
     else return window.confirm('レコードが重複しています。このまま保存しますか？') ? event : false;
-  })
+  });
 })();
