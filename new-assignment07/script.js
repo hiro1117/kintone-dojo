@@ -35,6 +35,7 @@
   };
 
   kintone.events.on(triggerEvents, (event) => {
+    event.record.重複禁止項目_文字列.disabled = true;
     event.record.重複禁止項目_文字列.value = createUniqueId(event);
     return event;
   });
