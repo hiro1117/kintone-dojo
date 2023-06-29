@@ -2,28 +2,29 @@
   'use strict';
 
   const triggerEvents = [
-    'app.record.create.show', 
-    'app.record.create.change.日付', 
-    'app.record.create.change.サイボウズ製品', 
-    'app.record.create.change.管理番号', 
+    'app.record.create.show',
+    'app.record.create.change.日付',
+    'app.record.create.change.サイボウズ製品',
+    'app.record.create.change.管理番号',
     'app.record.edit.show',
-    'app.record.edit.change.日付', 
-    'app.record.edit.change.サイボウズ製品', 
-    'app.record.edit.change.管理番号', 
+    'app.record.edit.change.日付',
+    'app.record.edit.change.サイボウズ製品',
+    'app.record.edit.change.管理番号',
   ];
-  
+
   const convertProductID = (product) => {
-    if(product === 'kintone') return 'KN'
-    else if(product === 'Garoon') return 'GN' 
-    else if(product === 'サイボウズ Office') return 'OF' 
-    else if(product === 'Mailwise') return 'MW' 
+    if (product === 'kintone') return 'KN';
+    else if (product === 'Garoon') return 'GN';
+    else if (product === 'サイボウズ Office') return 'OF';
+    else if (product === 'Mailwise') return 'MW';
+    return '';
   };
 
   const convertDate = (date) => {
     return dateFns.format(date, 'YYYYMMDD');
   };
 
-  const formatText = (date, id="", uniqueNum="") => {
+  const formatText = (date, id = '', uniqueNum = '') => {
     return `${date}-${id}-${uniqueNum}`;
   };
 
